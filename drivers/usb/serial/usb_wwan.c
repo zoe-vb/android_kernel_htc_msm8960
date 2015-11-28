@@ -801,7 +801,8 @@ int usb_wwan_suspend(struct usb_serial *serial, pm_message_t message)
 
 	spin_lock_irq(&intfdata->susp_lock);
 	if (PMSG_IS_AUTO(message)) {
-		if (intfdata->in_flight) {
+		if (intfdata->in_flight ||
+				pm_runtime_autosuspend_expiration(&serial->dev->dev)) {
 			spin_unlock_irq(&intfdata->susp_lock);
 			return -EBUSY;
 		}
@@ -881,15 +882,13 @@ int usb_wwan_resume(struct usb_serial *serial)
 		if (err)
 			err_count++;
 
+
+		err = play_delayed(port);
+		if (err)
+			err_count++;
+
 		for (j = 0; j < N_IN_URB; j++) {
 			urb = portdata->in_urbs[j];
-
-			/* don't re-submit if it already was submitted or if
-			 * it is being processed by in_work */
-			if (urb->anchor || !list_empty(&urb->urb_list))
-				continue;
-
-			usb_anchor_urb(urb, &portdata->submitted);
 			err = usb_submit_urb(urb, GFP_ATOMIC);
 			if (err < 0) {
 				err("%s: Error %d for bulk URB %d",
