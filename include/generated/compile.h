@@ -1,7 +1,7 @@
-/* This file is auto generated, version 16 */
+/* This file is auto generated, version 2 */
 /* SMP PREEMPT */
 #define UTS_MACHINE "arm"
-#define UTS_VERSION "#16 SMP PREEMPT Mon Mar 9 22:31:32 CET 2015"
-#define LINUX_COMPILE_BY "antaril"
-#define LINUX_COMPILE_HOST "Antaril-AGK-Edition"
-#define LINUX_COMPILER "gcc version 4.7 (GCC) "
+#define UTS_VERSION "#2 SMP PREEMPT Sun Nov 29 02:04:28 CET 2015"
+#define LINUX_COMPILE_BY "jekkos"
+#define LINUX_COMPILE_HOST "lenovo-t520"
+#define LINUX_COMPILER "gcc version 4.9 20140827 (prerelease) (GCC) "

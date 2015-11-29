@@ -88,6 +88,7 @@ deps_config := \
 	fs/ext3/Kconfig \
 	fs/ext2/Kconfig \
 	fs/Kconfig \
+	drivers/sensors/Kconfig \
 	drivers/coresight/Kconfig \
 	drivers/gud/Kconfig \
 	drivers/devfreq/Kconfig \
@@ -134,10 +135,8 @@ deps_config := \
 	drivers/staging/sm7xx/Kconfig \
 	drivers/staging/wlags49_h25/Kconfig \
 	drivers/staging/wlags49_h2/Kconfig \
-	drivers/staging/zsmalloc/Kconfig \
 	drivers/staging/qcache/Kconfig \
 	drivers/staging/zcache/Kconfig \
-	drivers/staging/zram/Kconfig \
 	drivers/staging/iio/trigger/Kconfig \
 	drivers/staging/iio/resolver/Kconfig \
 	drivers/staging/iio/meter/Kconfig \
@@ -193,6 +192,7 @@ deps_config := \
 	drivers/auxdisplay/Kconfig \
 	drivers/dca/Kconfig \
 	drivers/dma/Kconfig \
+	drivers/esoc/Kconfig \
 	drivers/rtc/Kconfig \
 	drivers/edac/Kconfig \
 	drivers/infiniband/ulp/iser/Kconfig \
@@ -606,6 +606,7 @@ deps_config := \
 	drivers/misc/Kconfig \
 	drivers/s390/block/Kconfig \
 	drivers/block/drbd/Kconfig \
+	drivers/block/zram/Kconfig \
 	drivers/block/mtip32xx/Kconfig \
 	drivers/block/paride/Kconfig \
 	drivers/block/Kconfig \
@@ -759,6 +760,7 @@ deps_config := \
 	arch/arm/plat-mxc/devices/Kconfig \
 	arch/arm/plat-mxc/Kconfig \
 	arch/arm/mach-mv78xx0/Kconfig \
+	arch/arm/mach-msm/htc/zara/Kconfig \
 	arch/arm/mach-msm/htc/m4/Kconfig \
 	arch/arm/mach-msm/htc/t6/Kconfig \
 	arch/arm/mach-msm/htc/m7/Kconfig \
@@ -808,7 +810,7 @@ deps_config := \
 include/config/auto.conf: \
 	$(deps_config)
 
-ifneq "$(KERNELVERSION)" "3.4.104"
+ifneq "$(KERNELVERSION)" "3.4.105"
 include/config/auto.conf: FORCE
 endif
 ifneq "$(ARCH)" "arm"

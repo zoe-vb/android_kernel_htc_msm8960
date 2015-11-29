@@ -1,1 +1,1 @@
-#define UTS_RELEASE "3.4.104AGK-LOLLIPOP-AOSP-v1.7-gaabcfc7-dirty"
+#define UTS_RELEASE "3.4.105AGK-LOLLIPOP-AOSP-v1.6-g1ddd7c6-dirty"

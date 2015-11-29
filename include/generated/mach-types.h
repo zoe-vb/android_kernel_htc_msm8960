@@ -1195,6 +1195,7 @@ extern unsigned int __machine_arch_type;
 #define MACH_TYPE_APQ8064_MAKO         7800
 #define MACH_TYPE_MSM8930_EVT          4558
 #define MACH_TYPE_M4_UL                4490
+#define MACH_TYPE_ZARA                 4605
 #define MACH_TYPE_T6_UL                4642
 
 #ifdef CONFIG_ARCH_EBSA110
@@ -15391,6 +15392,18 @@ extern unsigned int __machine_arch_type;
 # define machine_is_m4_ul()	(machine_arch_type == MACH_TYPE_M4_UL)
 #else
 # define machine_is_m4_ul()	(0)
+#endif
+
+#ifdef CONFIG_MACH_ZARA
+# ifdef machine_arch_type
+#  undef machine_arch_type
+#  define machine_arch_type	__machine_arch_type
+# else
+#  define machine_arch_type	MACH_TYPE_ZARA
+# endif
+# define machine_is_zara()	(machine_arch_type == MACH_TYPE_ZARA)
+#else
+# define machine_is_zara()	(0)
 #endif
 
 #ifdef CONFIG_MACH_T6_UL
