@@ -368,13 +368,19 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 
+ARCH_OPT	:= -mcpu=cortex-a15 -mtune=cortex-a15 -fno-tree-vectorize -munaligned-access \
+		   -g0 -fomit-frame-pointer -pipe -ffast-math -fgcse-las -fpredictive-commoning \
+		   -fmodulo-sched -fmodulo-sched-allow-regmoves -fivopts
+
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks
-KBUILD_AFLAGS_KERNEL :=
-KBUILD_CFLAGS_KERNEL :=
+		   -fno-delete-null-pointer-checks \
+		   $(ARCH_OPT)
+
+KBUILD_AFLAGS_KERNEL := $(ARCH_OPT)
+KBUILD_CFLAGS_KERNEL := $(ARCH_OPT)
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_AFLAGS_MODULE  := -DMODULE
 KBUILD_CFLAGS_MODULE  := -DMODULE
