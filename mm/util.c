@@ -4,6 +4,7 @@
 #include <linux/export.h>
 #include <linux/err.h>
 #include <linux/sched.h>
+#include <linux/vmalloc.h>
 #include <asm/uaccess.h>
 
 #include "internal.h"
@@ -175,6 +176,17 @@ EXPORT_SYMBOL(krealloc);
  * deal bigger than the requested buffer size passed to kmalloc(). So be
  * careful when using this function in performance sensitive code.
  */
+
+
+void kvfree(const void *addr)
+{
+	if (is_vmalloc_addr(addr))
+		vfree(addr);
+	else
+		kfree(addr);
+}
+EXPORT_SYMBOL(kvfree);
+
 void kzfree(const void *p)
 {
 	size_t ks;
